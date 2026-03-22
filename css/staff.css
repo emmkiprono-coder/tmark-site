@@ -1,0 +1,671 @@
+/* ============================================
+   TMARK - Staff Portal Styles
+   Uses CSS variables from style.css
+   ============================================ */
+
+/* --- Staff Page Body --- */
+.staff-page {
+    background: var(--off-white);
+    padding-top: 0;
+}
+
+/* --- Staff Navbar --- */
+.staff-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 12px 0;
+    background: rgba(10, 22, 40, 0.97);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.staff-navbar .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.staff-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.staff-nav-left .nav-logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.staff-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 50px;
+}
+
+.staff-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.staff-nav-link {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition);
+    text-decoration: none;
+}
+
+.staff-nav-link:hover,
+.staff-nav-link.active {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.staff-back-link {
+    margin-left: 12px;
+    color: var(--gold) !important;
+    border: 1px solid rgba(212, 168, 67, 0.3);
+}
+
+.staff-back-link:hover {
+    background: rgba(212, 168, 67, 0.15) !important;
+    border-color: var(--gold);
+}
+
+/* Mobile toggle for staff nav */
+.staff-navbar .nav-toggle {
+    display: none;
+}
+
+/* --- Staff Hero --- */
+.staff-hero {
+    position: relative;
+    min-height: 280px;
+    max-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, var(--navy-medium) 100%);
+    overflow: hidden;
+    padding-top: 70px;
+}
+
+.staff-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4a843' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+.staff-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px 24px;
+}
+
+.staff-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.staff-hero-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* --- Communications Section --- */
+.comms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.comms-card {
+    background: var(--white);
+    padding: 32px 28px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-100);
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.comms-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--gold);
+}
+
+.comms-date {
+    display: inline-block;
+    align-self: flex-start;
+    background: rgba(212, 168, 67, 0.12);
+    color: var(--gold-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 50px;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+}
+
+.comms-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
+
+.comms-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.comms-author {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-100);
+}
+
+.comms-author strong {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* --- Schedule Section --- */
+.schedule-container {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    -webkit-overflow-scrolling: touch;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    min-width: 700px;
+}
+
+.schedule-table thead tr {
+    background: var(--navy);
+}
+
+.schedule-table th {
+    color: var(--white);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 16px 18px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.schedule-table th:first-child {
+    text-align: left;
+    padding-left: 24px;
+}
+
+.schedule-table td {
+    padding: 14px 18px;
+    text-align: center;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--gray-100);
+    vertical-align: middle;
+}
+
+.schedule-table td:first-child {
+    text-align: left;
+    padding-left: 24px;
+}
+
+.schedule-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.schedule-table tbody tr:nth-child(even) {
+    background: var(--off-white);
+}
+
+.schedule-table tbody tr {
+    transition: background var(--transition);
+}
+
+.schedule-table tbody tr:hover {
+    background: rgba(212, 168, 67, 0.06);
+}
+
+.crew-name-cell {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+/* --- Status Pills --- */
+.status-pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.status-pill.charter {
+    background: rgba(46, 160, 67, 0.12);
+    color: #1a7f37;
+}
+
+.status-pill.dockstay {
+    background: rgba(56, 132, 244, 0.12);
+    color: #1a6dd4;
+}
+
+.status-pill.off {
+    background: rgba(110, 118, 129, 0.12);
+    color: #636c76;
+}
+
+.status-pill.maintenance {
+    background: rgba(227, 148, 20, 0.12);
+    color: #b35c00;
+}
+
+.status-pill.training {
+    background: rgba(137, 87, 229, 0.12);
+    color: #7c3aed;
+}
+
+/* --- Schedule Legend --- */
+.schedule-legend {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* --- Training Section --- */
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+.training-card {
+    background: var(--white);
+    padding: 32px 28px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-100);
+    transition: all var(--transition);
+}
+
+.training-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.training-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.training-icon {
+    font-size: 2rem;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(212, 168, 67, 0.1);
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+}
+
+.training-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+/* --- Training Status Badges --- */
+.training-status {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.training-status.current {
+    background: rgba(46, 160, 67, 0.12);
+    color: #1a7f37;
+}
+
+.training-status.in-progress {
+    background: rgba(227, 148, 20, 0.12);
+    color: #b35c00;
+}
+
+.training-status.due {
+    background: rgba(227, 148, 20, 0.12);
+    color: #b35c00;
+}
+
+.training-status.required {
+    background: rgba(218, 54, 51, 0.12);
+    color: #c42b28;
+}
+
+.training-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* --- Training Checklist --- */
+.training-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--gray-100);
+    padding-top: 16px;
+}
+
+.training-checklist li {
+    margin-bottom: 10px;
+}
+
+.training-checklist li:last-child {
+    margin-bottom: 0;
+}
+
+.checklist-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition);
+}
+
+.checklist-label:hover {
+    background: var(--off-white);
+}
+
+.checklist-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checklist-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid var(--gray-200);
+    border-radius: 4px;
+    transition: all var(--transition);
+    position: relative;
+    margin-top: 1px;
+}
+
+.checklist-mark::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 9px;
+    border: solid transparent;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-top: -2px;
+    transition: border-color var(--transition);
+}
+
+.checklist-checkbox:checked + .checklist-mark {
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+.checklist-checkbox:checked + .checklist-mark::after {
+    border-color: var(--navy);
+}
+
+.checklist-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    transition: all var(--transition);
+}
+
+.checklist-checkbox:checked ~ .checklist-text {
+    color: var(--text-light);
+    text-decoration: line-through;
+    text-decoration-color: var(--gray-200);
+}
+
+/* --- Staff Footer --- */
+.staff-footer {
+    background: var(--navy);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 32px 0;
+    margin-top: 20px;
+}
+
+.staff-footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.staff-footer .footer-logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.staff-footer-copy {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.staff-footer-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: none;
+    transition: color var(--transition);
+}
+
+.staff-footer-link:hover {
+    color: var(--gold-light);
+}
+
+/* ============================================
+   Responsive Styles
+   ============================================ */
+
+/* --- 1024px: Tablet --- */
+@media (max-width: 1024px) {
+    .comms-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 12px 12px;
+        font-size: 0.82rem;
+    }
+
+    .status-pill {
+        font-size: 0.68rem;
+        padding: 3px 10px;
+    }
+}
+
+/* --- 768px: Mobile landscape / small tablet --- */
+@media (max-width: 768px) {
+    .staff-nav-right {
+        display: none;
+    }
+
+    .staff-navbar .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        z-index: 1001;
+        padding: 8px;
+    }
+
+    .staff-navbar .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--navy);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition);
+    }
+
+    .staff-navbar .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .staff-navbar .nav-link {
+        font-size: 1.1rem;
+        padding: 12px 24px;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    .comms-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .training-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .staff-hero {
+        min-height: 220px;
+        padding-top: 60px;
+    }
+
+    .staff-footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .schedule-legend {
+        gap: 10px;
+    }
+
+    .section {
+        padding: 70px 0;
+    }
+}
+
+/* --- 480px: Mobile portrait --- */
+@media (max-width: 480px) {
+    .staff-badge {
+        font-size: 0.6rem;
+        padding: 4px 10px;
+        letter-spacing: 1px;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 10px 8px;
+        font-size: 0.75rem;
+    }
+
+    .status-pill {
+        font-size: 0.62rem;
+        padding: 2px 8px;
+    }
+
+    .staff-hero-content {
+        padding: 30px 16px;
+    }
+
+    .comms-card,
+    .training-card {
+        padding: 24px 20px;
+    }
+
+    .training-card-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .schedule-legend {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+}

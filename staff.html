@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMarK | Staff Portal - Internal Communications & Scheduling</title>
+    <meta name="description" content="TMarK Staff Portal - Internal crew communications, scheduling, and training requirements for the TMarK team.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/staff.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="staff-page">
+    <!-- Staff Navigation -->
+    <nav class="staff-navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="staff-nav-left">
+                <a href="index.html" class="nav-logo">
+                    <img src="images/logo-no-background.png" alt="TMarK Logo" class="nav-logo-img">
+                </a>
+                <span class="staff-badge">Staff Portal</span>
+            </div>
+            <div class="staff-nav-right">
+                <a href="#comms" class="staff-nav-link active">Communications</a>
+                <a href="#schedule" class="staff-nav-link">Schedule</a>
+                <a href="#training" class="staff-nav-link">Training</a>
+                <a href="index.html" class="staff-nav-link staff-back-link">&larr; Back to Main Site</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#comms" class="nav-link">Communications</a></li>
+                <li><a href="#schedule" class="nav-link">Schedule</a></li>
+                <li><a href="#training" class="nav-link">Training</a></li>
+                <li><a href="index.html" class="nav-link">&larr; Back to Main Site</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Staff Hero -->
+    <section class="staff-hero">
+        <div class="staff-hero-overlay"></div>
+        <div class="staff-hero-content">
+            <h1 class="staff-hero-title">TMarK Staff Portal</h1>
+            <p class="staff-hero-subtitle">Internal communications, scheduling, and training</p>
+        </div>
+    </section>
+
+    <!-- Section 1: Team News & Communications -->
+    <section class="section" id="comms">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Communications</span>
+                <h2 class="section-title">Team News & Updates</h2>
+            </div>
+            <div class="comms-grid">
+                <!-- Announcement 1 -->
+                <div class="comms-card">
+                    <span class="comms-date">May 1, 2026</span>
+                    <h3 class="comms-title">Welcome to the 2026 Season</h3>
+                    <p class="comms-desc">The 2026 charter season is officially underway! All vessels have passed USCG inspection and are cleared for operation. Please review the updated departure protocols and guest check-in procedures before your first shift. Season kickoff meeting is scheduled for May 3 at 9 AM at the dock.</p>
+                    <p class="comms-author">Posted by <strong>Captain Kip</strong></p>
+                </div>
+                <!-- Announcement 2 -->
+                <div class="comms-card">
+                    <span class="comms-date">April 15, 2026</span>
+                    <h3 class="comms-title">Safety Briefing Update</h3>
+                    <p class="comms-desc">Updated emergency procedures are now in effect for all vessels. Key changes include revised man-overboard protocols for the Ndinda, new fire extinguisher locations on the TMarK RIB, and updated first aid kit inventory requirements. All crew must complete the safety acknowledgment form by April 30.</p>
+                    <p class="comms-author">Posted by <strong>William</strong></p>
+                </div>
+                <!-- Announcement 3 -->
+                <div class="comms-card">
+                    <span class="comms-date">April 10, 2026</span>
+                    <h3 class="comms-title">Fleet Maintenance Schedule</h3>
+                    <p class="comms-desc">Spring preparation is in full swing. The TMarK RIB engine service is complete, Ndinda hull cleaning is scheduled for April 18, Emily Faye rigging inspection wraps April 22, and Rita has been buffed and re-branded. All vessels must be charter-ready by May 1.</p>
+                    <p class="comms-author">Posted by <strong>Domingo</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Crew Schedule -->
+    <section class="section" id="schedule">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Schedule</span>
+                <h2 class="section-title">Crew Schedule</h2>
+            </div>
+            <div class="schedule-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Crew Member</th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                            <th>Sun</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="crew-name-cell">Captain Kip</td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill maintenance">Maintenance</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill off">Off</span></td>
+                        </tr>
+                        <tr>
+                            <td class="crew-name-cell">William</td>
+                            <td><span class="status-pill training">Training</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill off">Off</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill dockstay">Dock-Stay</span></td>
+                        </tr>
+                        <tr>
+                            <td class="crew-name-cell">Tiffany</td>
+                            <td><span class="status-pill dockstay">Dock-Stay</span></td>
+                            <td><span class="status-pill dockstay">Dock-Stay</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill off">Off</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill dockstay">Dock-Stay</span></td>
+                        </tr>
+                        <tr>
+                            <td class="crew-name-cell">Tanika</td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill off">Off</span></td>
+                            <td><span class="status-pill training">Training</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill dockstay">Dock-Stay</span></td>
+                            <td><span class="status-pill off">Off</span></td>
+                        </tr>
+                        <tr>
+                            <td class="crew-name-cell">Domingo</td>
+                            <td><span class="status-pill maintenance">Maintenance</span></td>
+                            <td><span class="status-pill maintenance">Maintenance</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill off">Off</span></td>
+                            <td><span class="status-pill maintenance">Maintenance</span></td>
+                        </tr>
+                        <tr>
+                            <td class="crew-name-cell">Malombe</td>
+                            <td><span class="status-pill off">Off</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill maintenance">Maintenance</span></td>
+                            <td><span class="status-pill training">Training</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                            <td><span class="status-pill charter">Charter</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="schedule-legend">
+                <span class="legend-item"><span class="status-pill charter">Charter</span></span>
+                <span class="legend-item"><span class="status-pill dockstay">Dock-Stay</span></span>
+                <span class="legend-item"><span class="status-pill off">Off</span></span>
+                <span class="legend-item"><span class="status-pill maintenance">Maintenance</span></span>
+                <span class="legend-item"><span class="status-pill training">Training</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Training Requirements -->
+    <section class="section" id="training">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Training</span>
+                <h2 class="section-title">Training Requirements</h2>
+                <p class="section-desc">All crew members must maintain current certifications and complete required training.</p>
+            </div>
+            <div class="training-grid">
+                <!-- Training Card 1: Captain Certification -->
+                <div class="training-card">
+                    <div class="training-card-header">
+                        <div class="training-icon">&#9875;</div>
+                        <div>
+                            <h3 class="training-title">Captain Certification</h3>
+                            <span class="training-status current">Current</span>
+                        </div>
+                    </div>
+                    <p class="training-desc">USCG captain license, renewal dates, documentation requirements. All captains must maintain valid credentials and complete annual recertification.</p>
+                    <ul class="training-checklist">
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox" checked>
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">USCG Master Captain License (valid through 2028)</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox" checked>
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">CPR / First Aid Certification</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox" checked>
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Drug testing compliance (annual)</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox" checked>
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Physical examination (biennial)</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Radar observer endorsement (recommended)</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Training Card 2: Team Training -->
+                <div class="training-card">
+                    <div class="training-card-header">
+                        <div class="training-icon">&#128101;</div>
+                        <div>
+                            <h3 class="training-title">Team Training</h3>
+                            <span class="training-status in-progress">In Progress</span>
+                        </div>
+                    </div>
+                    <p class="training-desc">Onboarding, customer service standards, vessel familiarization, booking procedures. Required for all crew before the 2026 season launch.</p>
+                    <ul class="training-checklist">
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox" checked>
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">New crew onboarding orientation completed</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox" checked>
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Customer service standards & guest interaction protocols</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Vessel familiarization (TMarK, Ndinda, Emily Faye, Rita)</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Booking system & scheduling procedures</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Radio communication & docking procedures</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Training Card 3: Safety & Emergency Procedures -->
+                <div class="training-card">
+                    <div class="training-card-header">
+                        <div class="training-icon">&#128680;</div>
+                        <div>
+                            <h3 class="training-title">Safety & Emergency Procedures</h3>
+                            <span class="training-status due">Due May 2026</span>
+                        </div>
+                    </div>
+                    <p class="training-desc">Man-overboard drills, fire safety, first aid certification, severe weather protocols. Annual refresh required for all crew members before the season begins.</p>
+                    <ul class="training-checklist">
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox" checked>
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Man-overboard recovery drill (all vessels)</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Fire extinguisher operation & fire safety drill</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">First aid certification renewal</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Severe weather response & storm protocols</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Emergency communication & Coast Guard contact procedures</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Training Card 4: Jet Ski Operation -->
+                <div class="training-card">
+                    <div class="training-card-header">
+                        <div class="training-icon">&#9978;</div>
+                        <div>
+                            <h3 class="training-title">Jet Ski Operation</h3>
+                            <span class="training-status required">Required</span>
+                        </div>
+                    </div>
+                    <p class="training-desc">Rita operation certification, safety rules, client safety briefing procedures. Required for all crew members handling Rita before the jet ski is cleared for guest use.</p>
+                    <ul class="training-checklist">
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">PWC (Personal Watercraft) operation certification</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Speed zone regulations & navigation rules</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Client safety briefing script & demonstration</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="checklist-label">
+                                <input type="checkbox" class="checklist-checkbox">
+                                <span class="checklist-mark"></span>
+                                <span class="checklist-text">Emergency kill-switch & capsize recovery procedures</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simplified Staff Footer -->
+    <footer class="staff-footer">
+        <div class="container">
+            <div class="staff-footer-content">
+                <a href="index.html" class="nav-logo">
+                    <img src="images/logo-no-background.png" alt="TMarK Logo" class="footer-logo-img">
+                </a>
+                <p class="staff-footer-copy">&copy; 2026 TMarK &mdash; Chicago Waterfront Marine Services. All rights reserved.</p>
+                <a href="index.html" class="staff-footer-link">&larr; Back to Main Site</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/staff.js"></script>
+</body>
+</html>
