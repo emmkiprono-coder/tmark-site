@@ -279,6 +279,7 @@ input, select, textarea {
     padding: 8px 14px;
     border-radius: var(--radius-sm);
     transition: all var(--transition);
+    white-space: nowrap;
 }
 
 .nav-link:hover,
@@ -434,6 +435,18 @@ input, select, textarea {
 
 .stat {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.stat-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    line-height: 1;
+    min-height: 2.5rem;
 }
 
 .stat-number {
@@ -442,6 +455,7 @@ input, select, textarea {
     font-weight: 900;
     color: var(--gold);
     line-height: 1;
+    vertical-align: baseline;
 }
 
 .stat-suffix {
@@ -450,6 +464,7 @@ input, select, textarea {
     color: var(--gold);
     display: inline;
     vertical-align: baseline;
+    line-height: 1;
 }
 
 .stat-label {
@@ -1303,6 +1318,57 @@ input, select, textarea {
     flex-shrink: 0;
 }
 
+/* 3D Soft Isometric Icons */
+.icon-3d {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(212,168,67,0.15), rgba(212,168,67,0.05));
+    box-shadow: 4px 4px 12px rgba(0,0,0,0.08), -2px -2px 8px rgba(255,255,255,0.8), inset 0 1px 2px rgba(255,255,255,0.5);
+    font-size: 1.5rem;
+    transform: perspective(200px) rotateX(5deg) rotateY(-5deg);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.icon-3d::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.icon-3d:hover {
+    transform: perspective(200px) rotateX(0deg) rotateY(0deg) scale(1.1);
+    box-shadow: 6px 6px 16px rgba(0,0,0,0.12), -3px -3px 10px rgba(255,255,255,0.9), inset 0 1px 3px rgba(255,255,255,0.6);
+}
+
+/* Dark theme 3D icons for passport */
+.icon-3d-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(212,168,67,0.2), rgba(10,22,40,0.8));
+    box-shadow: 4px 4px 16px rgba(0,0,0,0.3), -2px -2px 8px rgba(212,168,67,0.1), inset 0 1px 2px rgba(212,168,67,0.15);
+    font-size: 1.8rem;
+    transform: perspective(200px) rotateX(5deg) rotateY(-5deg);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(212,168,67,0.15);
+}
+
+.icon-3d-dark:hover {
+    transform: perspective(200px) rotateX(0deg) rotateY(0deg) scale(1.1);
+    box-shadow: 6px 6px 20px rgba(0,0,0,0.4), -3px -3px 12px rgba(212,168,67,0.15);
+}
+
 .exp-card-badge {
     display: inline-block;
     padding: 3px 10px;
@@ -1319,6 +1385,7 @@ input, select, textarea {
 .exp-card-badge.river { background: #dbeafe; color: #1e40af; }
 .exp-card-badge.scenic { background: #dcfce7; color: #166534; }
 .exp-card-badge.signature { background: rgba(212, 168, 67, 0.2); color: var(--gold-dark); }
+.exp-card-badge.chill { background: #e0f2fe; color: #0369a1; }
 .exp-card-badge.addon { background: #f3e8ff; color: #6b21a8; }
 
 .experience-card[data-exp-category="river"] { border-left-color: #3b82f6; }
@@ -1331,6 +1398,15 @@ input, select, textarea {
     font-weight: 700;
     margin-bottom: 6px;
     color: var(--navy);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+/* 3D isometric effect for experience card emoji icons */
+.experience-card h3::first-letter {
+    font-size: 1.6rem;
+    vertical-align: middle;
+    margin-right: 2px;
+    filter: drop-shadow(2px 3px 2px rgba(0,0,0,0.15));
 }
 
 .exp-card-route {
@@ -1455,77 +1531,202 @@ input, select, textarea {
     line-height: 1.8;
 }
 
-/* --- Crew Section --- */
-.crew-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-}
-
-.crew-card {
-    background: var(--white);
-    padding: 32px 24px;
-    border-radius: var(--radius-md);
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--gray-100);
-    transition: all var(--transition);
-}
-
-.crew-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-}
-
-.crew-captain {
-    border-color: var(--gold);
-    background: linear-gradient(to bottom, rgba(212, 168, 67, 0.05), var(--white));
-    grid-column: span 3;
-    max-width: 500px;
+/* --- Crew Section (Safety Ring Layout with Knots) --- */
+.crew-circle-layout {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
     margin: 0 auto;
-}
-
-.crew-avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: var(--navy);
-    color: var(--gold);
+    aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 800;
-    font-size: 1.1rem;
-    margin: 0 auto 16px;
 }
 
-.crew-captain .crew-avatar {
-    width: 80px;
-    height: 80px;
-    font-size: 1.3rem;
-    background: var(--gold);
-    color: var(--navy);
+.crew-orbit-ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.crew-card h3 {
+.crew-center {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crew-circle-card {
+    text-align: center;
+    padding: 16px;
+    max-width: 180px;
+}
+
+.crew-circle-captain .crew-circle-card {
+    max-width: 220px;
+}
+
+.crew-circle-avatar {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--navy-medium));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(212,168,67,0.2), 0 0 0 4px rgba(212,168,67,0.1);
+    transition: all 0.4s ease;
+    padding: 16px;
+}
+
+.crew-circle-avatar:hover {
+    box-shadow: 0 12px 40px rgba(212,168,67,0.35), 0 0 0 6px rgba(212,168,67,0.2);
+    transform: scale(1.08);
+}
+
+.crew-circle-avatar svg {
+    width: 100%;
+    height: 100%;
+}
+
+.crew-circle-captain .crew-circle-avatar {
+    width: 140px;
+    height: 140px;
+    padding: 20px;
+    background: linear-gradient(135deg, #0d1f3c, var(--navy-medium));
+    box-shadow: 0 12px 40px rgba(212,168,67,0.3), 0 0 0 5px rgba(212,168,67,0.15), 0 0 60px rgba(212,168,67,0.08);
+}
+
+.crew-avatar-sm {
+    width: 90px;
+    height: 90px;
+    padding: 14px;
+}
+
+.crew-circle-card h3 {
     font-size: 1rem;
     font-weight: 700;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
+    color: var(--text-primary);
 }
 
-.crew-role {
-    font-size: 0.8rem;
-    font-weight: 600;
+.crew-circle-captain h3 {
+    font-size: 1.15rem;
+}
+
+.crew-circle-role {
+    font-size: 0.75rem;
+    font-weight: 700;
     color: var(--gold-dark);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
 }
 
-.crew-desc {
-    font-size: 0.85rem;
+.crew-circle-desc {
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.5;
+}
+
+.crew-orbit {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.crew-orbit-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    --radius: min(42%, 220px);
+    transform:
+        translate(-50%, -50%)
+        rotate(var(--angle))
+        translateY(calc(var(--radius) * -1))
+        rotate(calc(var(--angle) * -1));
+    transition: transform 0.3s ease;
+}
+
+.crew-orbit-card:hover {
+    z-index: 10;
+}
+
+/* Mobile: stack vertically instead of orbital */
+@media (max-width: 768px) {
+    .crew-circle-layout {
+        aspect-ratio: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        max-width: 400px;
+    }
+
+    .crew-center {
+        position: relative;
+    }
+
+    .crew-orbit {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .crew-orbit-card {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+    }
+
+    .crew-orbit-ring {
+        display: none;
+    }
+
+    .crew-circle-avatar, .crew-avatar-sm {
+        width: 80px;
+        height: 80px;
+        padding: 12px;
+    }
+
+    .crew-circle-captain .crew-circle-avatar {
+        width: 110px;
+        height: 110px;
+        padding: 16px;
+    }
+
+    .crew-circle-card {
+        max-width: 100%;
+        padding: 12px 8px;
+    }
+}
+
+/* Crew grid responsive */
+.crew-members-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .crew-members-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .crew-members-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
 }
 
 /* --- Booking Section --- */
@@ -2038,9 +2239,25 @@ input, select, textarea {
 .passport-stamp-badge.special { background: #f97316; color: #fff; }
 
 .passport-stamp-icon {
-    font-size: 2.5rem;
-    margin: 20px 0 12px;
+    font-size: 2rem;
+    margin: 20px auto 12px;
     line-height: 1;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(212,168,67,0.2), rgba(10,22,40,0.6));
+    box-shadow: 4px 4px 16px rgba(0,0,0,0.3), -2px -2px 8px rgba(212,168,67,0.1), inset 0 1px 2px rgba(212,168,67,0.15);
+    transform: perspective(200px) rotateX(5deg) rotateY(-5deg);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(212,168,67,0.15);
+}
+
+.passport-stamp:hover .passport-stamp-icon {
+    transform: perspective(200px) rotateX(0deg) rotateY(0deg) scale(1.1);
+    box-shadow: 6px 6px 20px rgba(0,0,0,0.4), -3px -3px 12px rgba(212,168,67,0.15);
 }
 
 .passport-stamp h4 {
@@ -2088,15 +2305,23 @@ input, select, textarea {
 }
 
 .reward-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin: 0 auto 16px;
     border: 2px solid;
+    background: linear-gradient(145deg, rgba(212,168,67,0.15), rgba(10,22,40,0.6));
+    box-shadow: 4px 4px 14px rgba(0,0,0,0.25), -2px -2px 8px rgba(212,168,67,0.08), inset 0 1px 2px rgba(212,168,67,0.1);
+    transform: perspective(200px) rotateX(4deg) rotateY(-4deg);
+    transition: all 0.3s ease;
+}
+
+.passport-reward-card:hover .reward-icon {
+    transform: perspective(200px) rotateX(0deg) rotateY(0deg) scale(1.08);
 }
 
 .passport-reward-card h4 {
@@ -2315,14 +2540,6 @@ input, select, textarea {
         display: none;
     }
 
-    .crew-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .crew-captain {
-        grid-column: span 2;
-    }
-
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: 150px;
@@ -2395,15 +2612,6 @@ input, select, textarea {
         grid-template-columns: 1fr;
     }
 
-    .crew-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .crew-captain {
-        grid-column: span 1;
-        max-width: 100%;
-    }
-
     .hero-cta {
         flex-direction: column;
         align-items: center;
@@ -2465,7 +2673,6 @@ input, select, textarea {
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About Us</a></li>
-                <li><a href="#crew" class="nav-link">Crew</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#fleet" class="nav-link">Fleet</a></li>
                 <li><a href="#experiences" class="nav-link">Experiences</a></li>
@@ -2495,15 +2702,15 @@ input, select, textarea {
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-number" data-target="4">0</span>
+                    <div class="stat-value"><span class="stat-number" data-target="4">0</span></div>
                     <span class="stat-label">Vessels in Fleet</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number" data-target="22">0</span>
+                    <div class="stat-value"><span class="stat-number" data-target="22">0</span></div>
                     <span class="stat-label">Passport Adventures</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+                    <div class="stat-value"><span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span></div>
                     <span class="stat-label">USCG Compliant</span>
                 </div>
             </div>
@@ -2545,8 +2752,10 @@ input, select, textarea {
             </div>
             <div class="about-grid">
                 <div class="about-content">
-                    <p class="about-lead">TMarK was founded in 2024 by Captain Kip and Tiffany. The name reflects a personal blend of their identities and their beloved dog, Marley. TMarK is a Chicago-based waterfront lifestyle company providing premium charter services, on-water experiences, and dock-stay accommodations.</p>
-                    <p>What began as a passion for Chicago's waterfront has evolved into a professional waterfront lifestyle company built on three core pillars: Safety, Reliability, and Exceptional Experience. Every detail matters, and quality is non-negotiable.</p>
+                    <p class="about-lead">TMarK was founded in 2024 by Captain Kip and Tiffany. The name reflects a personal blend of their identities and their beloved dog, Marley.</p>
+                    <p>TMarK is a Chicago-based waterfront lifestyle company providing premium charter services, curated on-water experiences, and dock-stay accommodations.</p>
+                    <p>Built on a foundation of trust, respect, and shared purpose, TMarK operates as more than a business. It is a growing team rooted in family values, where each experience reflects a commitment to excellence and genuine connection.</p>
+                    <p>As the company expands, TMarK continues to grow its family, welcoming Taneka and Domingo as partners. Having been part of the crew from the very beginning, they represent the culture, consistency, and team-first mindset that define the brand.</p>
                     <div class="about-pillars">
                         <div class="pillar">
                             <h4>Safety</h4>
@@ -2590,9 +2799,135 @@ input, select, textarea {
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="images/crew-team-wave.jpeg" alt="TMarK crew team waving on the dock" class="about-img" loading="lazy" loading="lazy">
+                    <img src="images/crew-team-wave.jpeg" alt="TMarK crew team waving on the dock" class="about-img" loading="lazy">
                 </div>
             </div>
+
+            <!-- Crew (inside About Us) - Interactive Life Ring -->
+            <div id="crew" style="margin-top:80px;">
+                <div class="section-header">
+                    <span class="section-label">Our Crew</span>
+                    <h2 class="section-title">The Team Behind <span class="accent">TMarK</span></h2>
+                    <p class="section-desc">A dedicated crew built on mutual respect, shared ownership, and a passion for the water. Click any crew member to learn more.</p>
+                </div>
+
+                <div id="crewRing" style="position:relative;max-width:680px;margin:0 auto;aspect-ratio:1;">
+                    <svg viewBox="0 0 600 600" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="300" cy="300" r="240" fill="none" stroke="#e8e0d0" stroke-width="36" opacity="0.4"/>
+                        <circle cx="300" cy="300" r="240" fill="none" stroke="#fff" stroke-width="32" opacity="0.15"/>
+                        <path d="M300,60 A240,240 0 0,1 470,130" fill="none" stroke="#c0392b" stroke-width="30" opacity="0.12" stroke-linecap="round"/>
+                        <path d="M540,300 A240,240 0 0,1 470,470" fill="none" stroke="#c0392b" stroke-width="30" opacity="0.12" stroke-linecap="round"/>
+                        <path d="M300,540 A240,240 0 0,1 130,470" fill="none" stroke="#c0392b" stroke-width="30" opacity="0.12" stroke-linecap="round"/>
+                        <path d="M60,300 A240,240 0 0,1 130,130" fill="none" stroke="#c0392b" stroke-width="30" opacity="0.12" stroke-linecap="round"/>
+                        <circle cx="300" cy="300" r="258" fill="none" stroke="rgba(212,168,67,0.15)" stroke-width="1.5"/>
+                        <circle cx="300" cy="300" r="222" fill="none" stroke="rgba(212,168,67,0.15)" stroke-width="1.5"/>
+                        <circle cx="300" cy="300" r="240" fill="none" stroke="rgba(212,168,67,0.08)" stroke-width="1" stroke-dasharray="6,4"/>
+                        <text x="300" y="290" text-anchor="middle" fill="rgba(212,168,67,0.25)" font-size="16" font-weight="800" font-family="Montserrat,sans-serif" letter-spacing="6">TMARK</text>
+                        <text x="300" y="312" text-anchor="middle" fill="rgba(212,168,67,0.15)" font-size="9" font-weight="600" font-family="Montserrat,sans-serif" letter-spacing="3">CREW</text>
+                        <!-- Center circular image mask -->
+                        <defs>
+                            <clipPath id="centerClip"><circle cx="300" cy="300" r="130"/></clipPath>
+                        </defs>
+                        <image href="images/chicago-skyline-sailboat.jpeg" x="170" y="170" width="260" height="260" clip-path="url(#centerClip)" preserveAspectRatio="xMidYMid slice"/>
+                        <!-- Gradient overlay on image for embossed look -->
+                        <circle cx="300" cy="300" r="130" fill="url(#centerGrad)"/>
+                        <defs>
+                            <radialGradient id="centerGrad">
+                                <stop offset="0%" stop-color="rgba(10,22,40,0)" />
+                                <stop offset="70%" stop-color="rgba(10,22,40,0.15)" />
+                                <stop offset="100%" stop-color="rgba(10,22,40,0.5)" />
+                            </radialGradient>
+                        </defs>
+                        <!-- TMarK embossed text over image -->
+                        <text x="300" y="288" text-anchor="middle" fill="rgba(212,168,67,0.7)" font-size="22" font-weight="900" font-family="Montserrat,sans-serif" letter-spacing="8" style="text-shadow:0 2px 4px rgba(0,0,0,0.3);">TMARK</text>
+                        <text x="300" y="310" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10" font-weight="600" font-family="Montserrat,sans-serif" letter-spacing="4">CHICAGO</text>
+                        <!-- Circle border around center image -->
+                        <circle cx="300" cy="300" r="130" fill="none" stroke="rgba(212,168,67,0.4)" stroke-width="3"/>
+                    </svg>
+                    <div id="crewNodes" style="position:absolute;inset:0;"></div>
+                </div>
+
+                <div id="crewDetail" style="display:none;max-width:600px;margin:32px auto 0;background:#fff;border-radius:16px;border:2px solid rgba(212,168,67,0.15);box-shadow:0 12px 40px rgba(0,0,0,0.08);overflow:hidden;">
+                    <div style="display:flex;align-items:center;gap:20px;padding:28px 32px;background:linear-gradient(135deg,#0a1628,#1a2d4a);color:#fff;">
+                        <div id="detailAvatar" style="width:72px;height:72px;border-radius:50%;background:rgba(212,168,67,0.15);display:flex;align-items:center;justify-content:center;border:3px solid rgba(212,168,67,0.4);flex-shrink:0;"></div>
+                        <div style="flex:1;">
+                            <h3 id="detailName" style="font-size:1.3rem;font-weight:800;margin-bottom:2px;"></h3>
+                            <p id="detailRole" style="font-size:0.75rem;font-weight:700;color:#d4a843;text-transform:uppercase;letter-spacing:2px;"></p>
+                        </div>
+                        <button onclick="document.getElementById('crewDetail').style.display='none'" style="background:none;border:none;color:rgba(255,255,255,0.5);font-size:1.5rem;cursor:pointer;padding:8px;">&times;</button>
+                    </div>
+                    <div style="padding:28px 32px;">
+                        <p id="detailBio" style="font-size:0.95rem;color:var(--text-secondary);line-height:1.8;margin-bottom:20px;"></p>
+                        <div id="detailSkills" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;"></div>
+                        <div id="detailExtra" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+            (function(){
+                var CREW=[
+                {id:"kip",name:"Captain Kip",role:"Captain, Founder & Guest Experience",
+                bio:"Captain Kip is the founder and driving force behind TMarK. A USCG certified captain with a deep passion for Chicago's waterfront, Kip built TMarK from the ground up with a vision of creating premium, unforgettable on-water experiences. He oversees fleet operations, strategic partnerships, and ensures every guest leaves with a story worth telling.",
+                skills:["USCG Certified","Fleet Operations","Strategic Planning","Guest Relations","Safety Leadership","Business Development"],
+                details:[{l:"Since",v:"2024"},{l:"Role",v:"Founder"},{l:"Vessels",v:"All Fleet"},{l:"Focus",v:"Vision & Growth"}],
+                icon:'<svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="14" fill="none" stroke="#d4a843" stroke-width="2.5"/><circle cx="40" cy="40" r="5" fill="#d4a843"/><line x1="40" y1="18" x2="40" y2="26" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="54" x2="40" y2="62" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="18" y1="40" x2="26" y2="40" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="54" y1="40" x2="62" y2="40" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><circle cx="40" cy="18" r="3" fill="#d4a843"/><circle cx="40" cy="62" r="3" fill="#d4a843"/><circle cx="18" cy="40" r="3" fill="#d4a843"/><circle cx="62" cy="40" r="3" fill="#d4a843"/></svg>'},
+                {id:"tiffany",name:"Tiffany",role:"Co-Founder & Guest Experience",
+                bio:"Tiffany is the co-founder of TMarK and the creative force behind the brand's guest experience. She manages events, curates dock-stay experiences, and ensures every touchpoint reflects the premium, family-rooted values TMarK stands for.",
+                skills:["Event Coordination","Brand Strategy","Guest Experience","Dock-Stay Management","Marketing","Hospitality"],
+                details:[{l:"Since",v:"2024"},{l:"Role",v:"Co-Founder"},{l:"Focus",v:"Experience"},{l:"Specialty",v:"Events & Brand"}],
+                icon:'<svg viewBox="0 0 80 80"><polygon points="40,12 44,36 40,40 36,36" fill="#d4a843" opacity="0.9"/><polygon points="40,68 44,44 40,40 36,44" fill="#d4a843" opacity="0.5"/><polygon points="12,40 36,36 40,40 36,44" fill="#d4a843" opacity="0.5"/><polygon points="68,40 44,36 40,40 44,44" fill="#d4a843" opacity="0.5"/><circle cx="40" cy="40" r="4" fill="#d4a843"/></svg>'},
+                {id:"william",name:"William",role:"Skipper, Operations & Safety, Guest Experience",
+                bio:"William serves as TMarK's skipper and head of operations. With extensive boating experience and a focus on safety, he leads crew training, ensures USCG compliance across all vessels, and maintains the operational standards that keep every charter running smoothly.",
+                skills:["Vessel Operations","Safety Protocols","Crew Training","USCG Compliance","Navigation","Emergency Response"],
+                details:[{l:"Since",v:"2024"},{l:"Role",v:"Skipper"},{l:"Vessels",v:"TMarK & Ndinda"},{l:"Focus",v:"Safety & Ops"}],
+                icon:'<svg viewBox="0 0 80 80"><circle cx="40" cy="22" r="6" fill="none" stroke="#d4a843" stroke-width="2.5"/><line x1="40" y1="28" x2="40" y2="62" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="62" x2="26" y2="52" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="40" y1="62" x2="54" y2="52" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="28" y1="42" x2="52" y2="42" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="34" y1="16" x2="46" y2="16" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/></svg>'},
+                {id:"taneka",name:"Taneka",role:"Partner, Stewardess, Host & Guest Experience",
+                bio:"Taneka has been part of the TMarK family from the very beginning. Now a partner in the business, she manages bookings, ensures compliance, and hosts events with a warmth and professionalism that guests remember. She represents the culture, consistency, and team-first mindset that define TMarK.",
+                skills:["Booking Management","Compliance","Event Hosting","Guest Relations","Operations Support","Team Leadership"],
+                details:[{l:"Since",v:"Day One"},{l:"Role",v:"Partner"},{l:"Focus",v:"Hospitality"},{l:"Specialty",v:"Events & Hosting"}],
+                icon:'<svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="20" fill="none" stroke="#d4a843" stroke-width="3"/><circle cx="40" cy="40" r="10" fill="none" stroke="#d4a843" stroke-width="2"/><path d="M40,20 L40,30" stroke="rgba(255,255,255,0.2)" stroke-width="4"/><path d="M40,50 L40,60" stroke="rgba(255,255,255,0.2)" stroke-width="4"/><path d="M20,40 L30,40" stroke="rgba(255,255,255,0.2)" stroke-width="4"/><path d="M50,40 L60,40" stroke="rgba(255,255,255,0.2)" stroke-width="4"/></svg>'},
+                {id:"domingo",name:"Domingo",role:"Partner, Crew Training, Deckhand, Ops & Guest Experience",
+                bio:"Domingo has been with TMarK since the beginning, earning his partnership through dedication, reliability, and an unwavering commitment to the team. He leads crew training, manages docking operations, and handles vessel maintenance.",
+                skills:["Crew Training","Docking Operations","Vessel Maintenance","Equipment Management","Safety Procedures","Guest Support"],
+                details:[{l:"Since",v:"Day One"},{l:"Role",v:"Partner"},{l:"Focus",v:"Training & Ops"},{l:"Specialty",v:"Maintenance"}],
+                icon:'<svg viewBox="0 0 80 80"><rect x="28" y="34" width="24" height="12" rx="3" fill="none" stroke="#d4a843" stroke-width="2.5"/><line x1="24" y1="38" x2="28" y2="34" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="24" y1="42" x2="28" y2="46" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="56" y1="38" x2="52" y2="34" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><line x1="56" y1="42" x2="52" y2="46" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><path d="M22,30 Q40,22 58,30" fill="none" stroke="#d4a843" stroke-width="1.5" stroke-dasharray="3,2"/><path d="M22,50 Q40,58 58,50" fill="none" stroke="#d4a843" stroke-width="1.5" stroke-dasharray="3,2"/></svg>'},
+                {id:"malombe",name:"Malombe",role:"Deckhand & Guest Experience",
+                bio:"Malombe brings reliability and a strong work ethic to TMarK's deck operations. He supports fleet upkeep, assists with vessel maintenance, and ensures guests have a safe, comfortable experience on every charter.",
+                skills:["Fleet Upkeep","Maintenance Support","Deck Operations","Guest Safety","Equipment Care","Team Support"],
+                details:[{l:"Since",v:"2025"},{l:"Role",v:"Deckhand"},{l:"Focus",v:"Fleet Care"},{l:"Specialty",v:"Maintenance"}],
+                icon:'<svg viewBox="0 0 80 80"><line x1="30" y1="18" x2="30" y2="64" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><polygon points="32,20 56,28 32,36" fill="#d4a843" opacity="0.7"/><polygon points="32,20 56,28 32,36" fill="none" stroke="#d4a843" stroke-width="1.5"/><path d="M20,56 Q28,52 36,56 Q44,60 52,56 Q60,52 64,54" fill="none" stroke="#d4a843" stroke-width="1.5" stroke-linecap="round"/><circle cx="30" cy="64" r="3" fill="#d4a843"/></svg>'},
+                {id:"marley",name:"Marley",role:"Chief Entertainer & Snack Beggar",
+                bio:"Marley is the heart and soul of TMarK. The brand's namesake and the crew's unofficial morale officer, Marley has been onboard since day one. Whether greeting guests at the dock, supervising deck operations from the most comfortable spot available, or performing quality control on any snacks within reach, Marley brings joy to every charter. Guests love him, the crew can't function without him, and he takes his role very seriously (especially the snack part).",
+                skills:["Guest Welcoming","Morale Boosting","Snack Quality Control","Dock Supervision","Nap Excellence","Unconditional Love"],
+                details:[{l:"Since",v:"Day One"},{l:"Role",v:"Chief Entertainer"},{l:"Breed",v:"Best Boy"},{l:"Specialty",v:"Snack Begging"}],
+                icon:'<svg viewBox="0 0 80 80"><circle cx="40" cy="32" r="14" fill="none" stroke="#d4a843" stroke-width="2"/><circle cx="34" cy="29" r="2" fill="#d4a843"/><circle cx="46" cy="29" r="2" fill="#d4a843"/><ellipse cx="40" cy="35" rx="4" ry="3" fill="none" stroke="#d4a843" stroke-width="1.5"/><path d="M26,26 Q22,18 18,22" fill="none" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><path d="M54,26 Q58,18 62,22" fill="none" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/><path d="M32,46 Q40,54 48,46" fill="none" stroke="#d4a843" stroke-width="2" stroke-linecap="round"/><line x1="40" y1="46" x2="40" y2="58" stroke="#d4a843" stroke-width="2" stroke-linecap="round"/><path d="M34,58 Q40,64 46,58" fill="none" stroke="#d4a843" stroke-width="2" stroke-linecap="round"/><path d="M24,50 Q20,56 26,60" fill="none" stroke="#d4a843" stroke-width="1.5" stroke-linecap="round"/><path d="M56,50 Q60,56 54,60" fill="none" stroke="#d4a843" stroke-width="1.5" stroke-linecap="round"/></svg>'}
+                ];
+                var box=document.getElementById('crewNodes');
+                var det=document.getElementById('crewDetail');
+                var n=CREW.length, rad=40;
+                CREW.forEach(function(c,i){
+                    var ang=(i*(360/n))-90, r=ang*Math.PI/180;
+                    var x=50+rad*Math.cos(r), y=50+rad*Math.sin(r);
+                    var d=document.createElement('div');
+                    d.style.cssText='position:absolute;left:'+x+'%;top:'+y+'%;transform:translate(-50%,-50%);text-align:center;cursor:pointer;transition:transform 0.3s;z-index:2;width:110px;';
+                    d.innerHTML='<div style="width:68px;height:68px;margin:0 auto 8px;border-radius:50%;background:linear-gradient(135deg,#0a1628,#1a2d4a);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(212,168,67,0.2),0 0 0 3px rgba(212,168,67,0.12);transition:all 0.3s;"><div style="width:38px;height:38px;">'+c.icon+'</div></div><div style="font-size:0.8rem;font-weight:700;line-height:1.2;">'+c.name+'</div><div style="font-size:0.55rem;font-weight:600;color:#b8922e;text-transform:uppercase;letter-spacing:0.5px;line-height:1.3;margin-top:2px;">'+c.role.split(',')[0]+'</div>';
+                    d.onmouseenter=function(){d.style.transform='translate(-50%,-50%) scale(1.12)';};
+                    d.onmouseleave=function(){d.style.transform='translate(-50%,-50%) scale(1)';};
+                    d.onclick=function(){
+                        document.getElementById('detailAvatar').innerHTML='<div style="width:40px;height:40px;">'+c.icon+'</div>';
+                        document.getElementById('detailName').textContent=c.name;
+                        document.getElementById('detailRole').textContent=c.role;
+                        document.getElementById('detailBio').textContent=c.bio;
+                        document.getElementById('detailSkills').innerHTML=c.skills.map(function(s){return '<span style="padding:4px 12px;background:rgba(212,168,67,0.08);border:1px solid rgba(212,168,67,0.15);border-radius:20px;font-size:0.75rem;font-weight:600;color:#b8922e;">'+s+'</span>';}).join('');
+                        document.getElementById('detailExtra').innerHTML=c.details.map(function(dd){return '<div style="padding:12px;background:#f5f7fa;border-radius:8px;"><div style="font-size:0.7rem;color:#a0aabb;text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:2px;">'+dd.l+'</div><div style="font-size:0.95rem;font-weight:700;">'+dd.v+'</div></div>';}).join('');
+                        det.style.display='block';
+                        det.scrollIntoView({behavior:'smooth',block:'nearest'});
+                    };
+                    box.appendChild(d);
+                });
+            })();
+            </script>
         </div>
     </section>
 
@@ -2600,28 +2935,36 @@ input, select, textarea {
     <section class="section section-alt services" id="services">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Our Services</span>
+                <span class="section-label">Our Services and Experiences</span>
                 <h2 class="section-title">Three Ways to <span class="accent">Experience the Water</span></h2>
                 <p class="section-desc">TMarK generates experiences across three core service lines, each designed to deliver excellence on Chicago's waterfront.</p>
             </div>
             <div class="services-grid">
                 <div class="service-card service-featured">
-                    <h3>Charter Services</h3>
+                    <h3>Boating and Water Experiences</h3>
                     <p class="service-price-tag">From $95/30min &ndash; $275/hr</p>
                     <p>Premium boat charters on Lake Michigan and the Chicago River. Private events, corporate outings, sunset cruises, architecture tours, and celebrations aboard our diverse fleet.</p>
                     <a href="#booking" class="service-link">Book a Charter &rarr;</a>
                 </div>
                 <div class="service-card">
-                    <h3>Water Experiences</h3>
+                    <h3>Dock Stay and Harbor Experiences</h3>
                     <p class="service-price-tag">Sailing $175/hr &bull; Overnight $275&ndash;350/night</p>
                     <p>Stay overnight aboard the Emily Faye, our 29-foot C&amp;C sailboat. A romantic waterfront escape on Lake Michigan, perfect for couples seeking an unforgettable night or weekend on the water.</p>
                     <a href="#booking" class="service-link">Book a Stay &rarr;</a>
                 </div>
                 <div class="service-card">
-                    <h3>Boat Sales</h3>
+                    <h3>TMarK Boatworks</h3>
                     <p class="service-price-tag">Coming Soon</p>
-                    <p>Quality RIB vessels for sale through our partnership network. Pilot program launching Q3 2026 with plans to scale across the Great Lakes region.</p>
-                    <a href="#booking" class="service-link">Inquire &rarr;</a>
+                    <p>Built for how you move on the water. Custom builds and curated vessels through our partnership network. Pilot program launching Q3 2026 with plans to scale across the Great Lakes region.</p>
+                    <a href="#booking" class="service-link service-inquire-link" onclick="event.preventDefault();document.getElementById('boatworks-inquire').style.display=document.getElementById('boatworks-inquire').style.display==='none'?'block':'none';">Inquire Today &rarr;</a>
+                    <div id="boatworks-inquire" style="display:none;margin-top:16px;padding:16px;background:var(--off-white);border-radius:var(--radius-sm);border:1px solid var(--gray-100);">
+                        <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:12px;">Interested in TMarK Boatworks? Leave your details and our team will reach out.</p>
+                        <input type="text" placeholder="Your name" style="width:100%;padding:10px 14px;border:2px solid var(--gray-100);border-radius:6px;font-size:0.9rem;margin-bottom:8px;box-sizing:border-box;">
+                        <input type="email" placeholder="Email address" style="width:100%;padding:10px 14px;border:2px solid var(--gray-100);border-radius:6px;font-size:0.9rem;margin-bottom:8px;box-sizing:border-box;">
+                        <input type="tel" placeholder="Phone number" style="width:100%;padding:10px 14px;border:2px solid var(--gray-100);border-radius:6px;font-size:0.9rem;margin-bottom:8px;box-sizing:border-box;">
+                        <textarea placeholder="What are you looking for?" rows="2" style="width:100%;padding:10px 14px;border:2px solid var(--gray-100);border-radius:6px;font-size:0.9rem;margin-bottom:8px;box-sizing:border-box;resize:none;"></textarea>
+                        <button class="btn btn-primary" style="width:100%;padding:12px;">Submit Inquiry</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2686,9 +3029,14 @@ input, select, textarea {
                     </div>
                 </div>
                 <div class="fleet-card" data-category="sailboat">
-                    <div class="fleet-image">
-                        <img src="images/emily-faye-detail.jpeg" alt="Emily Faye C&C sailboat deck at sunset" class="fleet-img" loading="lazy" loading="lazy">
-                        <span class="fleet-badge">Romantic</span>
+                    <div class="fleet-image" style="position:relative;">
+                        <img src="images/emily-faye-detail.jpeg" alt="Emily Faye C&C sailboat" class="fleet-img" loading="lazy" style="filter:blur(12px);transform:scale(1.1);">
+                        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,22,40,0.4);z-index:1;">
+                            <span style="font-size:2rem;margin-bottom:8px;">⛵</span>
+                            <span style="color:#fff;font-size:1rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;">Coming Soon</span>
+                            <span style="color:var(--gold);font-size:0.85rem;font-weight:600;margin-top:4px;">Reveals July 4th, 2026</span>
+                        </div>
+                        <span class="fleet-badge" style="background:var(--navy);color:var(--gold);z-index:2;">Coming Soon</span>
                     </div>
                     <div class="fleet-info">
                         <h3>Emily Faye</h3>
@@ -2696,13 +3044,13 @@ input, select, textarea {
                         <div class="fleet-specs">
                             <span>&#128207; 29 ft</span>
                             <span>&#128101; 2&ndash;4 guests</span>
-                            <span>&#127769; Overnight &amp; weekend</span>
+                            <span>&#127769; Overnight, weekend &amp; week stays</span>
                         </div>
-                        <p class="fleet-desc">A romantic overnight sailboat experience on Lake Michigan. Perfect for couples seeking a weekend escape or a magical night under the stars aboard a classic C&amp;C sailboat.</p>
+                        <p class="fleet-desc">Something special is coming to the harbor. A romantic overnight sailboat experience on Lake Michigan. Perfect for couples seeking a magical escape under the stars. Full reveal July 4th.</p>
                         <div class="fleet-price">
-                            <span class="price">From $175<small>/hr</small></span>
-                            <span class="price-alt">Overnight: $275<small>/night</small></span>
-                            <a href="#booking" class="btn btn-sm">Book Now</a>
+                            <span class="price">From $175<small>/hr sailing</small></span>
+                            <span class="price-alt">Overnight: $295<small>/night</small></span>
+                            <a href="#booking" class="btn btn-sm" style="background:var(--navy);color:var(--gold);">Join Waitlist</a>
                         </div>
                     </div>
                 </div>
@@ -2729,16 +3077,17 @@ input, select, textarea {
         </div>
     </section>
 
-    <!-- Chill Harbor Experiences Section -->
+    <!-- Experiences Section -->
     <section class="section section-alt experiences" id="experiences">
         <div class="container">
             <div class="section-header">
-                <span class="section-label">Chill Harbor Experiences</span>
+                <span class="section-label">Experiences</span>
                 <h2 class="section-title">Curated <span class="accent">On-Water Experiences</span></h2>
                 <p class="section-desc">From river cruises to sunset parties, choose your adventure on Chicago's waterfront. All experiences include captain &amp; crew.</p>
             </div>
             <div class="experience-filters">
                 <button class="exp-filter-btn active" data-exp-filter="all">All Experiences</button>
+                <button class="exp-filter-btn" data-exp-filter="chill">Chill Harbor</button>
                 <button class="exp-filter-btn" data-exp-filter="river">River Cruises</button>
                 <button class="exp-filter-btn" data-exp-filter="scenic">Scenic Cruises</button>
                 <button class="exp-filter-btn" data-exp-filter="signature">Signature</button>
@@ -2839,8 +3188,8 @@ input, select, textarea {
                         <a href="#booking" class="btn btn-sm">Inquire</a>
                     </div>
                 </div>
-                <div class="experience-card" data-exp-category="signature">
-                    <span class="exp-card-badge signature">Signature</span>
+                <div class="experience-card" data-exp-category="chill">
+                    <span class="exp-card-badge chill">Chill Harbor</span>
                     <h3>&#127754; Playpen Water Play</h3>
                     <p class="exp-card-route">Chicago Playpen &bull; Min. 2-hour slot</p>
                     <p class="exp-card-desc">Anchor in Chicago's famous Playpen for swimming, floating, and pure summer fun. Bring your crew and make waves.</p>
@@ -2899,8 +3248,8 @@ input, select, textarea {
                         <a href="#booking" class="btn btn-sm">Book Now</a>
                     </div>
                 </div>
-                <div class="experience-card" data-exp-category="signature">
-                    <span class="exp-card-badge signature">Signature</span>
+                <div class="experience-card" data-exp-category="chill">
+                    <span class="exp-card-badge chill">Chill Harbor</span>
                     <h3>&#127946; Chill, Swim &amp; Party at the Dock</h3>
                     <p class="exp-card-route">Dockside &bull; Summer vibes</p>
                     <p class="exp-card-desc">Dock party experience: swim, chill, music, and good vibes right at the harbor. The ultimate summer hangout. Boat ride not included.</p>
@@ -2914,8 +3263,8 @@ input, select, textarea {
                         <a href="#booking" class="btn btn-sm">Book Now</a>
                     </div>
                 </div>
-                <div class="experience-card" data-exp-category="signature">
-                    <span class="exp-card-badge signature">Signature</span>
+                <div class="experience-card" data-exp-category="chill">
+                    <span class="exp-card-badge chill">Chill Harbor</span>
                     <h3>&#127925; Black Scene Party</h3>
                     <p class="exp-card-route">Themed party &bull; On the water</p>
                     <p class="exp-card-desc">An exclusive themed party experience on Chicago's lakefront. Music, vibes, and the city skyline as your backdrop.</p>
@@ -3534,55 +3883,6 @@ input, select, textarea {
                     <div class="faq-answer">
                         <p>Our primary charter season runs from May through October. Dock-stay bookings on the Emily Faye begin in June. RIB sales inquiries are welcome year-round.</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Crew Section -->
-    <section class="section crew" id="crew">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Our Crew</span>
-                <h2 class="section-title">The Team Behind <span class="accent">TMarK</span></h2>
-                <p class="section-desc">A dedicated crew built on mutual respect, shared ownership, and a passion for the water.</p>
-            </div>
-            <div class="crew-grid">
-                <div class="crew-card crew-captain">
-                    <div class="crew-avatar">EK</div>
-                    <h3>Captain Emmanuel 'Kip' Chepkwony</h3>
-                    <p class="crew-role">Captain &amp; Founder</p>
-                    <p class="crew-desc">Fleet operations, maintenance, strategy, and partnerships. The heart and helm of TMarK.</p>
-                </div>
-                <div class="crew-card">
-                    <div class="crew-avatar">W</div>
-                    <h3>William</h3>
-                    <p class="crew-role">Secondary Captain</p>
-                    <p class="crew-desc">Operations, safety, crew training, and Coast Guard compliance.</p>
-                </div>
-                <div class="crew-card crew-captain">
-                    <div class="crew-avatar">T</div>
-                    <h3>Tiffany</h3>
-                    <p class="crew-role">Co-Founder</p>
-                    <p class="crew-desc">Guest experience, dock-stay management, events coordination, and marketing. Co-visionary behind the TMarK brand.</p>
-                </div>
-                <div class="crew-card">
-                    <div class="crew-avatar">T</div>
-                    <h3>Tanika</h3>
-                    <p class="crew-role">Stewardess / Host</p>
-                    <p class="crew-desc">Guest experience, booking management, compliance, and event hosting.</p>
-                </div>
-                <div class="crew-card">
-                    <div class="crew-avatar">D</div>
-                    <h3>Domingo</h3>
-                    <p class="crew-role">Deckhand</p>
-                    <p class="crew-desc">Operations, docking, equipment management, and vessel maintenance.</p>
-                </div>
-                <div class="crew-card">
-                    <div class="crew-avatar">M</div>
-                    <h3>Malombe</h3>
-                    <p class="crew-role">Deckhand</p>
-                    <p class="crew-desc">Operations, docking, fleet upkeep, and vessel maintenance support.</p>
                 </div>
             </div>
         </div>
