@@ -3915,7 +3915,7 @@ input, select, textarea {
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="(312) 555-0100">
+                            <input type="tel" id="phone" name="phone" required placeholder="Your phone number">
                         </div>
                     </div>
                     <div class="form-row">
@@ -4018,17 +4018,17 @@ input, select, textarea {
                     <div class="contact-card">
                         <div class="contact-icon">&#128205;</div>
                         <h4>Location</h4>
-                        <p>DuSable Harbor<br>Chicago, IL 60601</p>
+                        <p>Montrose Harbor<br>Chicago, IL 60640</p>
                     </div>
                     <div class="contact-card">
                         <div class="contact-icon">&#128222;</div>
                         <h4>Phone</h4>
-                        <p><a href="tel:+13125550100">(312) 555-0100</a></p>
+                        <p><a href="tel:+18557693089">(855) 769-3089</a><br><a href="tel:+13128728914" style="font-size:0.85rem;">(312) 872-8914</a></p>
                     </div>
                     <div class="contact-card">
                         <div class="contact-icon">&#9993;</div>
                         <h4>Email</h4>
-                        <p><a href="mailto:info@tmarkcharters.com">info@tmarkcharters.com</a></p>
+                        <p><a href="mailto:info@tmarkchicago.com">info@tmarkchicago.com</a></p>
                     </div>
                     <div class="contact-card">
                         <div class="contact-icon">&#128336;</div>
@@ -4039,7 +4039,7 @@ input, select, textarea {
                 <div class="contact-map">
                     <div class="map-placeholder">
                         <span>&#128506;</span>
-                        <p>DuSable Harbor, Chicago</p>
+                        <p>Montrose Harbor, Chicago</p>
                         <p class="map-note">Interactive map would be embedded here</p>
                     </div>
                 </div>
@@ -4091,10 +4091,11 @@ input, select, textarea {
                 <div class="footer-links">
                     <h4>Contact</h4>
                     <ul>
-                        <li><a href="tel:+13125550100">(312) 555-0100</a></li>
-                        <li><a href="mailto:info@tmarkcharters.com">info@tmarkcharters.com</a></li>
-                        <li>DuSable Harbor</li>
-                        <li>Chicago, IL 60601</li>
+                        <li><a href="tel:+18557693089">(855) 769-3089</a></li>
+                        <li><a href="tel:+13128728914">(312) 872-8914</a></li>
+                        <li><a href="mailto:info@tmarkchicago.com">info@tmarkchicago.com</a></li>
+                        <li>Montrose Harbor</li>
+                        <li>Chicago, IL 60640</li>
                     </ul>
                 </div>
             </div>
@@ -4798,7 +4799,7 @@ document.head.appendChild(style);
             typingEl.remove();
 
             if (data.error) {
-                addMessage('I apologize, I am having trouble connecting right now. Please call us at (312) 555-0100 or fill out the booking form below.', 'agent');
+                addMessage('I apologize, I am having trouble connecting right now. Please call us at (855) 769-3089 or fill out the booking form below.', 'agent');
             } else {
                 const reply = data.reply;
                 history.push({ role: 'assistant', content: reply });
@@ -4806,7 +4807,7 @@ document.head.appendChild(style);
             }
         } catch (err) {
             typingEl.remove();
-            addMessage('Connection issue. Please try again or call us at (312) 555-0100.', 'agent');
+            addMessage('Connection issue. Please try again or call us at (855) 769-3089.', 'agent');
         }
 
         isLoading = false;
