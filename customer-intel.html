@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TMarK | Customer Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0a1628;--navy-2:#1a2d4a;--gold:#c8913a;--gold-2:#daa856;--bg:#f5f2ec;--fg:#1a2a3a;--muted:#8e99a4;--line:#e8e4dc;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Sans 3',system-ui,sans-serif;color:var(--fg);background:var(--bg);min-height:100vh;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:40px 24px}
+.head{text-align:center;margin-bottom:40px}
+.kicker{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+.title{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy)}
+.sub{color:var(--muted);font-size:14px;margin-top:6px}
+.card{background:#fff;border-radius:14px;padding:28px;border:1px solid rgba(200,145,58,0.12);box-shadow:0 2px 12px rgba(0,0,0,0.03);margin-bottom:20px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-row-full{grid-column:1/-1}
+.lbl{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px}
+.inp{width:100%;padding:12px 14px;border:2px solid var(--line);border-radius:10px;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s}
+.inp:focus{border-color:var(--gold)}
+.btn{padding:12px 28px;background:linear-gradient(135deg,var(--gold),var(--gold-2));border:none;border-radius:10px;color:var(--navy);font-weight:800;cursor:pointer;font-family:inherit;font-size:14px;letter-spacing:0.5px;transition:all .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(200,145,58,0.3)}
+.btn:disabled{opacity:0.5;cursor:wait}
+.btn-secondary{padding:8px 16px;background:transparent;border:1.5px solid var(--line);border-radius:8px;color:var(--muted);font-weight:600;cursor:pointer;font-family:inherit;font-size:12px}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.sample-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.briefing{margin-top:20px;animation:slideIn .4s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.tier-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-left:8px}
+.tier-Admiral{background:#c8913a;color:#fff}
+.tier-Captain{background:#2e7d5b;color:#fff}
+.tier-Navigator{background:#2d5a7b;color:#fff}
+.tier-Explorer{background:var(--line);color:var(--muted)}
+.vip-banner{padding:14px 18px;border-radius:10px;margin-bottom:18px;font-size:13px;font-weight:700}
+.vip-VIP{background:linear-gradient(135deg,rgba(200,145,58,0.15),rgba(200,145,58,0.05));border-left:4px solid var(--gold);color:var(--navy)}
+.vip-Regular{background:rgba(45,90,123,0.08);border-left:4px solid #2d5a7b}
+.vip-First-time{background:rgba(46,125,91,0.08);border-left:4px solid #2e7d5b}
+.vip-At-risk{background:rgba(192,57,43,0.08);border-left:4px solid #c0392b}
+.section{margin-bottom:22px}
+.section-head{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:10px}
+.section-head::before{content:"";width:14px;height:2px;background:var(--gold)}
+.list{list-style:none;padding:0}
+.list li{padding:10px 14px;background:#faf8f4;border-radius:8px;margin-bottom:6px;font-size:14px;display:flex;gap:10px;align-items:flex-start}
+.list li::before{content:"→";color:var(--gold);font-weight:800;flex-shrink:0}
+.tone{padding:14px 18px;background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:10px;font-size:13px;line-height:1.6;font-style:italic}
+.tone::before{content:"🎙️  ";margin-right:4px}
+.hdr-line{font-size:15px;font-weight:600;line-height:1.5;margin-bottom:4px}
+.customer-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+.stat{text-align:center;padding:10px;background:#faf8f4;border-radius:8px}
+.stat-v{font-size:20px;font-weight:800;color:var(--gold);font-family:'Playfair Display',serif}
+.stat-l{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-top:2px;font-weight:600}
+.loading{text-align:center;padding:40px;color:var(--muted)}
+.spin{display:inline-block;width:24px;height:24px;border:2px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:s 0.8s linear infinite;margin-bottom:10px}
+@keyframes s{to{transform:rotate(360deg)}}
+.err{padding:14px;background:rgba(192,57,43,0.08);border:1px solid rgba(192,57,43,0.3);border-radius:10px;color:#c0392b;font-size:13px;margin-top:12px}
+.meta{text-align:center;margin-top:20px;font-size:11px;color:var(--muted);letter-spacing:1px}
+@media(max-width:640px){.form{grid-template-columns:1fr}.customer-stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div class="head">
+        <div class="kicker">TMarK Operations Hub</div>
+        <h1 class="title">Customer Intelligence</h1>
+        <p class="sub">Brief the crew before a charter. Know who's coming aboard, what they love, how to make it unforgettable.</p>
+    </div>
+
+    <div class="card">
+        <div class="form">
+            <div>
+                <label class="lbl">Customer Email</label>
+                <input class="inp" id="email" type="email" placeholder="jen@email.com">
+            </div>
+            <div>
+                <label class="lbl">Phone</label>
+                <input class="inp" id="phone" type="tel" placeholder="(312) 555-0100">
+            </div>
+            <div class="form-row-full">
+                <label class="lbl">Or name</label>
+                <input class="inp" id="name" type="text" placeholder="Jennifer Martinez">
+            </div>
+            <div class="form-row-full">
+                <label class="lbl">Upcoming Charter (optional, for tailored briefing)</label>
+                <input class="inp" id="upcoming" type="text" placeholder="e.g. Sunset Escape, July 4th, 4 guests">
+            </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <button class="btn" id="runBtn" onclick="runIntel()">Generate Briefing</button>
+            <span style="font-size:11px;color:var(--muted);">Powered by Claude Opus 4.7</span>
+        </div>
+        <div class="sample-row">
+            <span style="font-size:11px;color:var(--muted);margin-right:4px;line-height:26px;">Try:</span>
+            <button class="btn-secondary" onclick="loadSample('jen')">Jennifer (Navigator)</button>
+            <button class="btn-secondary" onclick="loadSample('maria')">Maria (Admiral, VIP)</button>
+            <button class="btn-secondary" onclick="loadSample('new')">First-timer</button>
+        </div>
+        <div id="errBox"></div>
+    </div>
+
+    <div id="output"></div>
+
+    <div class="meta">Requires ANTHROPIC_API_KEY in Vercel env · Uses Vercel KV for customer data if configured</div>
+</div>
+
+<script>
+function loadSample(kind){
+    if(kind==='jen'){document.getElementById('email').value='jen@email.com';document.getElementById('phone').value='';document.getElementById('name').value='';document.getElementById('upcoming').value='Date Night on the Water, next Saturday evening, 2 guests';}
+    if(kind==='maria'){document.getElementById('email').value='maria@email.com';document.getElementById('phone').value='';document.getElementById('name').value='';document.getElementById('upcoming').value='Fireworks Front Row, July 4th, 6 guests';}
+    if(kind==='new'){document.getElementById('email').value='';document.getElementById('phone').value='';document.getElementById('name').value='Alex Thompson';document.getElementById('upcoming').value='Sunset Escape, 2 guests, anniversary';}
+}
+
+async function runIntel(){
+    const btn = document.getElementById('runBtn');
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const name = document.getElementById('name').value.trim();
+    const upcoming = document.getElementById('upcoming').value.trim();
+    const errBox = document.getElementById('errBox');
+    const out = document.getElementById('output');
+
+    errBox.innerHTML = '';
+    if(!email && !phone && !name){
+        errBox.innerHTML = '<div class="err">Provide an email, phone, or name.</div>';
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Analyzing...';
+    out.innerHTML = '<div class="card loading"><div class="spin"></div><div>Claude Opus 4.7 is reviewing customer history...</div></div>';
+
+    // Allow admin key override via URL param
+    const params = new URLSearchParams(window.location.search);
+    const adminKey = params.get('key') || 'tmark2026';
+
+    try {
+        const res = await fetch('/api/customer-intel', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json','X-Admin-Key':adminKey},
+            body: JSON.stringify({
+                email, phone, name,
+                upcomingBooking: upcoming ? { experience: upcoming, date: '', time: '', guests: '', notes: '' } : null,
+                adminKey
+            })
+        });
+        const data = await res.json();
+
+        if(!res.ok){
+            out.innerHTML = '';
+            errBox.innerHTML = '<div class="err"><strong>'+(data.error||'Error')+'</strong>'+(data.hint?'<br><small>'+data.hint+'</small>':'')+'</div>';
+            return;
+        }
+        renderBriefing(data);
+    } catch(e) {
+        out.innerHTML = '';
+        errBox.innerHTML = '<div class="err">Request failed: '+e.message+'</div>';
+    } finally {
+        btn.disabled = false;
+        btn.textContent = 'Generate Briefing';
+    }
+}
+
+function renderBriefing(data){
+    const c = data.customer || {};
+    const b = data.briefing || {};
+    const vipClass = 'vip-' + (b.vipStatus || 'Regular').replace(/\s/g,'-');
+    const tierClass = 'tier-' + (c.tier || 'Explorer');
+
+    let html = '<div class="briefing">';
+
+    // Customer header card
+    html += '<div class="card">';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">';
+    html += '<h2 style="font-family:\'Playfair Display\',serif;font-size:22px;font-weight:700;">'+escape(c.name||'Unknown Guest')+'</h2>';
+    html += '<span class="tier-badge '+tierClass+'">'+escape(c.tier||'Explorer')+'</span>';
+    html += '</div>';
+    html += '<div style="font-size:12px;color:var(--muted);margin-top:4px;">'+escape(c.email||'')+(c.phone?' · '+escape(c.phone):'')+'</div>';
+    html += '<div class="customer-stats">';
+    html += '<div class="stat"><div class="stat-v">'+(c.bookings||0)+'</div><div class="stat-l">Bookings</div></div>';
+    html += '<div class="stat"><div class="stat-v">$'+(c.totalRevenue||0).toLocaleString()+'</div><div class="stat-l">Lifetime</div></div>';
+    html += '<div class="stat"><div class="stat-v" style="font-size:14px;text-transform:uppercase;letter-spacing:1px;">'+escape(c.preferences?.favoriteExperience||'--')+'</div><div class="stat-l">Favorite</div></div>';
+    html += '<div class="stat"><div class="stat-v" style="font-size:14px;text-transform:uppercase;letter-spacing:1px;">'+escape(c.lastBooking||'--')+'</div><div class="stat-l">Last Booking</div></div>';
+    html += '</div>';
+    html += '</div>';
+
+    // Briefing card
+    html += '<div class="card">';
+    html += '<div class="vip-banner '+vipClass+'">'+escape(b.vipStatus||'Regular')+' · '+escape(b.headline||'')+'</div>';
+
+    if(b.keyInsights?.length){
+        html += '<div class="section"><div class="section-head">Key Insights</div><ul class="list">';
+        b.keyInsights.forEach(function(i){html += '<li>'+escape(i)+'</li>';});
+        html += '</ul></div>';
+    }
+
+    if(b.personalTouches?.length){
+        html += '<div class="section"><div class="section-head">Personal Touches</div><ul class="list">';
+        b.personalTouches.forEach(function(i){html += '<li>'+escape(i)+'</li>';});
+        html += '</ul></div>';
+    }
+
+    if(b.upsellOpportunities?.length){
+        html += '<div class="section"><div class="section-head">Upsell Opportunities</div><ul class="list">';
+        b.upsellOpportunities.forEach(function(i){html += '<li>'+escape(i)+'</li>';});
+        html += '</ul></div>';
+    }
+
+    if(b.risksOrNotes?.length){
+        html += '<div class="section"><div class="section-head">Watch Out For</div><ul class="list">';
+        b.risksOrNotes.forEach(function(i){html += '<li>'+escape(i)+'</li>';});
+        html += '</ul></div>';
+    }
+
+    if(b.tone){
+        html += '<div class="section"><div class="section-head">Tone & Greeting</div>';
+        html += '<div class="tone">'+escape(b.tone)+'</div></div>';
+    }
+
+    html += '<div style="font-size:10px;color:var(--muted);text-align:right;margin-top:8px;">Generated '+new Date(data.generatedAt).toLocaleString()+' · '+escape(data.model||'claude-opus-4-7')+'</div>';
+    html += '</div>';
+
+    html += '</div>';
+
+    document.getElementById('output').innerHTML = html;
+}
+
+function escape(s){
+    if(s==null) return '';
+    return String(s).replace(/[&<>"']/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});
+}
+</script>
+</body>
+</html>
